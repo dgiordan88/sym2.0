@@ -45,7 +45,7 @@ def setup_mongodb(CollectionName):
         client = pymongo.MongoClient('bigdatadb.polito.it', 27017,ssl=True,ssl_cert_reqs=ssl.CERT_NONE) # server.local_bind_port is assigned local port                #client = pymongo.MongoClient()        
         client.server_info()        
         db = client['carsharing'] #Choose the DB to use     
-        db.authenticate('carsharing', 'carSharingDB@polito')#, mechanism='MONGODB-CR') #authentication         #car2go_debug_info = db['DebugInfo'] #Collection for Car2Go watch
+        db.authenticate('ictts', 'Ictts16!')#, mechanism='MONGODB-CR') #authentication         #car2go_debug_info = db['DebugInfo'] #Collection for Car2Go watch
         Collection = db[CollectionName] #Collection for Enjoy watch   
     except pymongo.errors.ServerSelectionTimeoutError as err:        
         print(err)    
@@ -115,14 +115,15 @@ def zoneIDtoMatrixCoordinates(ID):
     return (ID, Xi, Yi, CentalLoni, CentalLati)
 
 
-def ReloadZonesCars(ZoneCars, ZoneID_Zone, AvaiableChargingStations):
+def ReloadZonesCars(ZoneCars, AvaiableChargingStations):
     
+    ZoneID_Zone = {}
     for ZoneI_ID in ZoneCars:       
         ZoneI = Zone(ZoneI_ID,AvaiableChargingStations) 
         ZoneID_Zone[ZoneI_ID] = ZoneI 
         ZoneI.setCars(ZoneCars[ZoneI.ID])    
             
-    return 
+    return ZoneID_Zone
 
 
 def loadRecharing(method, numberOfStations):

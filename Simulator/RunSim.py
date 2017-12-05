@@ -153,9 +153,7 @@ def RunSim(BestEffort,
 
     BookingID_Car = {}
 
-    ZoneID_Zone = {}
-    
-    ReloadZonesCars(ZoneCars, ZoneID_Zone, AvaiableChargingStations)
+    ZoneID_Zone =  ReloadZonesCars(ZoneCars, AvaiableChargingStations)
 
     
     fout = open("../output/"+fname,"w")

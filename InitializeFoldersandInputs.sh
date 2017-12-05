@@ -3,6 +3,9 @@
 mkdir input
 mkdir output
 mkdir events
+mkdir output_analysis
+mkdir output_analysis/fig
+
 
 cd InputCreation
 
